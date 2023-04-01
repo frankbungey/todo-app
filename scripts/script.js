@@ -14,21 +14,32 @@ const outlet = document.querySelector('.outlet')
 const data_from_storage = localStorage.getItem('data')
 const usable_data = JSON.parse(data_from_storage)
 
-function fetch_data(){
+function fetch_data() {
     if (usable_data) {
-        usable_data.forEach(function(element ){
+        usable_data.forEach(function (element) {
+            function checkStatus(){
+                if(element.done){
+                    return "Completed"
+                }else{
+                    return "Mark Done"
+                }
+            }
+            
+           const status = checkStatus()
+
             outlet.innerHTML += `
-                    <div class="task" id="${element.id}">
+                    <div class="task ${element.done}" id="${element.id}">
                         <p >${element.title}</p>
                         <p>${element.description}</p>
                         <p>${element.date}</p>
                         <div>
-                            <button>Mark Done</button>
+                            <button class="mrkdone">${status}</button>
                             <button class="del">DELETE</button>
                         </div>
                     </div>
                  `
         });
+      
     }
 }
 
@@ -43,10 +54,12 @@ btn.addEventListener('click', e => {
         const data_container = []
         const id = Date.now()
         const data = {
+
             id: id,
             title: title.value,
             description: description.value,
-            date: date.value
+            date: date.value,
+            done: false
         }
         if (usable_data) {
             data_container.push(...usable_data, data)
@@ -77,6 +90,26 @@ del.forEach(del_btn => {
         const updated_data = usable_data.filter(data => data.id != del_id)
         localStorage.setItem('data', JSON.stringify(updated_data))
         window.location.reload()
+    })
+
+})
+
+
+const mark_done = document.querySelectorAll('.mrkdone')
+// console.log(mark_done)
+mark_done.forEach((btn) => {
+
+    btn.addEventListener('click', () => {
+        const id = btn.parentElement.parentElement.id
+
+        usable_data.forEach((task) => {
+            if (task.id == id) {
+                task.done = true
+                localStorage.setItem('data', JSON.stringify(usable_data))
+                window.location.reload()
+            }
+        })
+
     })
 
 })

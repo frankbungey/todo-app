@@ -38,3 +38,12 @@ button{
     background-color: red;
     color: white;
 }
+
+.true{
+    border-radius: 5px;
+    background-color: lightcoral;
+    opacity: .6;
+}
+.true p{
+    text-decoration: line-through;
+}
