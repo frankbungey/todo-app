@@ -8,6 +8,7 @@ body{
 .inputs{
     display: flex;
     flex-direction: column;
+    margin-top: 5px;
 }
 input{
     margin: 0.5rem 0;
@@ -20,10 +21,16 @@ input[type="submit"]{
     height: 2.5rem;
     background-color: lawngreen;
 }
-.outlet{
+.ttn{
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid black ;
 }
+
 .task{
+    display: flex;
     padding: 1rem;
+    flex-direction: column;
     border:1px solid black;
     margin-bottom: 0.5rem;
 }

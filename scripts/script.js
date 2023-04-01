@@ -24,13 +24,14 @@ function fetch_data() {
                     return "Mark Done"
                 }
             }
-            
+
            const status = checkStatus()
 
             outlet.innerHTML += `
                     <div class="task ${element.done}" id="${element.id}">
-                        <p >${element.title}</p>
-                        <p>${element.description}</p>
+                        <p class="ttn" >${element.title}</p>
+                        <hr/>
+                        <div>${element.description}</div>
                         <p>${element.date}</p>
                         <div>
                             <button class="mrkdone">${status}</button>
